@@ -5,21 +5,33 @@ email varchar(30) not null,
 senha varchar(15) not null
 );
 
+create table cadastro
+(
+email varchar2(30) not null primary key,
+nome varchar(30) not null,
+veiculo varchar2(10) not null,
+FOREIGN key (veiculo) references carros(placa)
+);
+
 create table pecas
 (
-id_peca int not null primary key,
+cpf VARCHAR2(15) not null primary key,
 nomePeca varchar(30)
 );
 
+select * from cadastro;
+
 create table carros
 (
-placa varchar(10) not null  primary key,
-modelo varchar(10) not null,
-marca varchar(10) not null,
+placa varchar2(10) not null  primary key,
+modelo varchar2(10) not null,
+marca varchar2(10) not null,
 ano int not null,
-pecas int not null,
-foreign key (pecas) references pecas(id_peca)
+pecas varchar2(15) not null,
+foreign key (pecas) references pecas(cpf)
 );
+drop table carros;
+drop table pecas;
 
 CREATE SEQUENCE SPECAS MINVALUE 1 MAXVALUE 999999 INCREMENT BY 1 START WITH 1 ;
 

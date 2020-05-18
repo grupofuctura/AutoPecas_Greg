@@ -4,10 +4,8 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-
 import br.com.autoPecas.DAO.CadastroDAO;
 import br.com.autoPecas.DAO.CarrosDAO;
 import br.com.autoPecas.DAO.PecasDAO;

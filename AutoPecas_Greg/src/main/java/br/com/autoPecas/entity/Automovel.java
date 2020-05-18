@@ -3,7 +3,7 @@ package br.com.autoPecas.entity;
 import java.io.Serializable;
 import java.util.List;
 
-public class CarroCadastrado implements Serializable {
+public class Automovel implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String placa;
@@ -68,7 +68,7 @@ public class CarroCadastrado implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CarroCadastrado other = (CarroCadastrado) obj;
+		Automovel other = (Automovel) obj;
 		if (placa == null) {
 			if (other.placa != null)
 				return false;

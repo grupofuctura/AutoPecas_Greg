@@ -12,13 +12,13 @@ public class PecasDoCarro implements Serializable, List<PecasDoCarro> {
 
 	private String cpf;
 	private String nomePeca;
-	private CarroCadastrado carros;
+	private Automovel carros;
 
-	public CarroCadastrado getCarros() {
+	public Automovel getCarros() {
 		return carros;
 	}
 
-	public void setCarros(CarroCadastrado carros) {
+	public void setCarros(Automovel carros) {
 		this.carros = carros;
 	}
 

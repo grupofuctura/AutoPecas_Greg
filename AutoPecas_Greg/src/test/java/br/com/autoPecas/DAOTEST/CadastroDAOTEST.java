@@ -8,7 +8,7 @@ import br.com.autoPecas.DAO.CadastroDAO;
 import br.com.autoPecas.DAO.CarrosDAO;
 import br.com.autoPecas.DAO.PecasDAO;
 import br.com.autoPecas.entity.Cadastro;
-import br.com.autoPecas.entity.CarroCadastrado;
+import br.com.autoPecas.entity.Automovel;
 import br.com.autoPecas.entity.PecasDoCarro;
 
 public class CadastroDAOTEST {
@@ -23,7 +23,7 @@ public class CadastroDAOTEST {
 		PecasDAO pecasDAO = new PecasDAO();
 		pecasDAO.cadastrarPecas(novasPecas);
 
-		CarroCadastrado novoCarro = new CarroCadastrado();
+		Automovel novoCarro = new Automovel();
 		novoCarro.setAno(1969);
 		novoCarro.setMarca("Ford");
 		novoCarro.setModelo("Mustang");

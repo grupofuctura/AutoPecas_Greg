@@ -6,12 +6,12 @@ import java.sql.SQLException;
 
 
 import br.com.autoPecas.connection.ConnectionBase;
-import br.com.autoPecas.entity.CarroCadastrado;
+import br.com.autoPecas.entity.Automovel;
 import br.com.autoPecas.entity.PecasDoCarro;
 
 public class CarrosDAO {
 
-	public void cadastrarCarro(CarroCadastrado carro) throws SQLException {
+	public void cadastrarCarro(Automovel carro) throws SQLException {
 
 		Connection conexao = null;
 		PreparedStatement pst = null;

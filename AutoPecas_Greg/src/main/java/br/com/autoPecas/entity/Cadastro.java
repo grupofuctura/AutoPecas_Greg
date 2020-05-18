@@ -7,13 +7,13 @@ public class Cadastro implements Serializable {
 
 	private String nomeCadastro;
 	private String emailCadastro;
-	private CarroCadastrado veiculo;
+	private Automovel veiculo;
 
-	public CarroCadastrado getVeiculo() {
+	public Automovel getVeiculo() {
 		return veiculo;
 	}
 
-	public void setVeiculo(CarroCadastrado veiculo) {
+	public void setVeiculo(Automovel veiculo) {
 		this.veiculo = veiculo;
 	}
 

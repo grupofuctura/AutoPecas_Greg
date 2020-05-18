@@ -38,11 +38,11 @@ public class PecasDAO {
 		try {
 			conexao = ConnectionBase.getConnection();
 			conexao.setAutoCommit(false);
-			pst = conexao.prepareStatement("INSERT INTO pecas (id_peca,nomePeca) VALUE(?,?)");
+			pst = conexao.prepareStatement("INSERT INTO pecas(id_peca,nomePeca) VALUE(?,?)");
 			Long id = this.recuperaId();
-
+			
 			pst.setLong(1, id);
-			pst.setString(1, pecas.getNomePeca());
+			pst.setString(2, pecas.getNomePeca());
 
 			pst.execute();
 //			int linha = pst.executeUpdate();

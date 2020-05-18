@@ -45,6 +45,7 @@ public class LoginBean {
 				this.faces.msgError("Email já Cadastrado");
 			} else {
 				usuarioDAO.cadastrarUsuario(novo);
+				this.faces.msgInfo("Cadastro Realizado com Sucesso");
 			}
 
 			this.usuario = new Usuario();
@@ -72,7 +73,7 @@ public class LoginBean {
 			}
 		}
 
-		return "";
+		return "/pages/index.xhtml";
 	}
 
 	public Faces getFaces() {

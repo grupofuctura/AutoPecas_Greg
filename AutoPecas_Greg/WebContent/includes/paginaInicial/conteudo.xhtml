@@ -1,0 +1,73 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<p:growl id="msg" />
+	<h:form>
+		<p:dialog header="Login" widgetVar="login" visible="false">
+
+			<h:panelGrid columns="2" cellpadding="2" cellspacing="2">
+
+				<p:row>
+					<p:outputLabel value="Email: " />
+				</p:row>
+
+				<p:row>
+					<p:inputText value="#{LoginBean.txtEmail}" />
+				</p:row>
+
+				<p:row>
+					<p:outputLabel type="Senha: " />
+				</p:row>
+
+				<p:row>
+					<p:inputText value="#{LoginBean.txtSenha}" type="password" />
+				</p:row>
+
+				<p:row>
+					<p:commandButton value="Entrar" action="#{LoginBean.entrar}"
+						update="@form :msg" />
+				</p:row>
+			</h:panelGrid>
+		</p:dialog>
+		<!-- Cadastro -->
+
+
+		<p:dialog header="Login" widgetVar="cadastro" visible="false">
+			<h:panelGrid columns="2" cellpadding="2" cellspacing="2">
+
+				<p:row>
+					<p:outputLabel value="Nome: " />
+				</p:row>
+
+				<p:row>
+					<p:inputText value="#{LoginBean.usuario.nome}" />
+				</p:row>
+
+				<p:row>
+					<p:outputLabel value="Email: " />
+				</p:row>
+
+				<p:row>
+					<p:inputText value="#{LoginBean.usuario.email}" />
+				</p:row>
+
+				<p:row>
+					<p:outputLabel value="Senha: " />
+				</p:row>
+
+				<p:row>
+					<p:inputText value="#{LoginBean.usuario.senha}" type="password" />
+				</p:row>
+
+				<p:row>
+					<p:commandButton value="Cadastrar"
+						actionListener="#{LoginBean.cadastrar}" update="@form :msg" />
+				</p:row>
+
+			</h:panelGrid>
+		</p:dialog>
+	</h:form>
+</ui:component>

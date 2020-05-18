@@ -85,7 +85,7 @@ public class VeiculoBean implements Serializable {
 				}
 			}
 
-			if (verificarCadastro == true && verificarCarro == true) {
+			if (verificarCadastro == true || verificarCarro == true) {
 				this.faces.msgError("Você já possui cadastro!");
 			} else {
 

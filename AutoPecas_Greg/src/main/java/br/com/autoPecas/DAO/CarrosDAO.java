@@ -27,7 +27,7 @@ public class CarrosDAO {
 			pst.setString(2, carro.getMarca());
 			pst.setString(3, carro.getModelo());
 			pst.setInt(4, carro.getAno());
-			pst.setLong(5, ((PecasDoCarro) carro.getPecas()).getId_pecas());
+			pst.setString(5, ((PecasDoCarro) carro.getPecas()).getCpf());
 			pst.addBatch();
 			int[] salvoNoBanco = pst.executeBatch();
 			System.out.println(salvoNoBanco);

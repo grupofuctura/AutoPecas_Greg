@@ -13,8 +13,9 @@ public class PecasDAOTEST {
 	public void salvarTest() throws SQLException {
 
 		PecasDoCarro pecas = new PecasDoCarro();
-		pecas.setNomePeca("pneu");
-
+		pecas.setCpf("1234567");
+		pecas.setNomePeca("teto solar");
+		
 		PecasDAO pecasDAO = new PecasDAO();
 		pecasDAO.cadastrarPecas(pecas);
 	}

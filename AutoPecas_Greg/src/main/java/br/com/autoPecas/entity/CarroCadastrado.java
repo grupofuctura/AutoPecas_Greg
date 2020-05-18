@@ -80,6 +80,9 @@ public class CarroCadastrado implements Serializable {
 	@Override
 	public String toString() {
 		return "CarroCadastrado [placa=" + placa + ", marca=" + marca + ", modelo=" + modelo + ", ano=" + ano
-				+ ", Pecas=" + Pecas + "]";
+				+ ", Pecas=" + Pecas + ", getPlaca()=" + getPlaca() + ", getMarca()=" + getMarca() + ", getModelo()="
+				+ getModelo() + ", getAno()=" + getAno() + ", getPecas()=" + getPecas() + ", hashCode()=" + hashCode()
+				+ ", getClass()=" + getClass() + ", toString()=" + super.toString() + "]";
 	}
+
 }

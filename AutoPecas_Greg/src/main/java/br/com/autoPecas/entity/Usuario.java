@@ -36,7 +36,9 @@ public class Usuario implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Usuario [nome=" + nome + ", email=" + email + ", senha=" + senha + "]";
+		return "Usuario [nome=" + nome + ", email=" + email + ", senha=" + senha + ", getNome()=" + getNome()
+				+ ", getEmail()=" + getEmail() + ", getSenha()=" + getSenha() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 
 }

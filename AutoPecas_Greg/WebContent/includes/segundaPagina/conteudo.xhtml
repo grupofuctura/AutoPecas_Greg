@@ -46,54 +46,40 @@
 
 			<h:panelGrid columns="2" cellpadding="5" cellspacing="5">
 
-				<h:panelGrid columns="2" cellpadding="5" cellspacing="5">
+				<p:row>
+					<p:outputLabel value="Marca: " />
+				</p:row>
 
-					<p:row>
-						<p:outputLabel value="Marca: " />
-					</p:row>
+				<p:row>
+					<p:inputText />
+				</p:row>
 
-					<p:row>
-						<p:inputText />
-					</p:row>
+				<p:row>
+					<p:outputLabel value="Modelo: " />
+				</p:row>
 
-					<p:row>
-						<p:outputLabel value="Modelo: " />
-					</p:row>
+				<p:row>
+					<p:inputText />
+				</p:row>
 
-					<p:row>
-						<p:inputText />
-					</p:row>
+				<p:row>
+					<p:outputLabel value="Ano: " />
+				</p:row>
 
-					<p:row>
-						<p:outputLabel value="Ano: " />
-					</p:row>
+				<p:row>
+					<p:inputText />
+				</p:row>
 
-					<p:row>
-						<p:inputText />
-					</p:row>
+				<p:row>
+					<p:outputLabel value="Placa: " />
+				</p:row>
 
-					<p:row>
-						<p:outputLabel value="Placa: " />
-					</p:row>
+				<p:row>
+					<p:inputMask mask="(***)-(9999)" />
+				</p:row>
 
-					<p:row>
-						<p:inputMask mask="***-9999" />
-					</p:row>
-
-				</h:panelGrid>
-
-				<h:panelGrid cellpadding="5" cellspacing="5">
-					<p:row>
-
-					</p:row>
-
-					<p:row>
-						<p:commandButton value="Salvar Veículo" />
-					</p:row>
-
-				</h:panelGrid>
 			</h:panelGrid>
+
 		</p:fieldset>
 	</h:form>
-
 </ui:component>

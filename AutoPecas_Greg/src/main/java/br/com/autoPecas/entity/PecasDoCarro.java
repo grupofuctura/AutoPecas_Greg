@@ -1,16 +1,16 @@
 package br.com.autoPecas.entity;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class PecasDoCarro implements Serializable, List<PecasDoCarro>{
+public class PecasDoCarro implements Serializable, List<PecasDoCarro> {
 	private static final long serialVersionUID = 1L;
-	
-	
-	private Long id_pecas;
+
+	private String cpf;
 	private String nomePeca;
 	private CarroCadastrado carros;
 
@@ -22,14 +22,6 @@ public class PecasDoCarro implements Serializable, List<PecasDoCarro>{
 		this.carros = carros;
 	}
 
-	public Long getId_pecas() {
-		return id_pecas;
-	}
-
-	public void setId_pecas(Long id_pecas) {
-		this.id_pecas = id_pecas;
-	}
-
 	public String getNomePeca() {
 		return nomePeca;
 	}
@@ -38,12 +30,19 @@ public class PecasDoCarro implements Serializable, List<PecasDoCarro>{
 		this.nomePeca = nomePeca;
 	}
 
-	
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id_pecas == null) ? 0 : id_pecas.hashCode());
+		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
 		return result;
 	}
 
@@ -56,17 +55,21 @@ public class PecasDoCarro implements Serializable, List<PecasDoCarro>{
 		if (getClass() != obj.getClass())
 			return false;
 		PecasDoCarro other = (PecasDoCarro) obj;
-		if (id_pecas == null) {
-			if (other.id_pecas != null)
+		if (cpf == null) {
+			if (other.cpf != null)
 				return false;
-		} else if (!id_pecas.equals(other.id_pecas))
+		} else if (!cpf.equals(other.cpf))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "PecasDoCarro [id_pecas=" + id_pecas + ", nomePeca=" + nomePeca + "]";
+		return "PecasDoCarro [cpf=" + cpf + ", nomePeca=" + nomePeca + ", carros=" + carros + ", getCarros()="
+				+ getCarros() + ", getNomePeca()=" + getNomePeca() + ", getCpf()=" + getCpf() + ", hashCode()="
+				+ hashCode() + ", size()=" + size() + ", isEmpty()=" + isEmpty() + ", iterator()=" + iterator()
+				+ ", toArray()=" + Arrays.toString(toArray()) + ", listIterator()=" + listIterator() + ", getClass()="
+				+ getClass() + ", toString()=" + super.toString() + "]";
 	}
 
 	@Override
@@ -150,7 +153,7 @@ public class PecasDoCarro implements Serializable, List<PecasDoCarro>{
 	@Override
 	public void clear() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -168,7 +171,7 @@ public class PecasDoCarro implements Serializable, List<PecasDoCarro>{
 	@Override
 	public void add(int index, PecasDoCarro element) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -206,7 +209,5 @@ public class PecasDoCarro implements Serializable, List<PecasDoCarro>{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
 
 }

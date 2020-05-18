@@ -4,7 +4,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-
+	<p:growl id="message" />
 	<h:form>
 		<p:fieldset legend="Cadastro">
 			<h:panelGrid columns="2" cellpadding="5" cellspacing="5">
@@ -15,7 +15,7 @@
 					</p:row>
 
 					<p:row>
-						<p:inputText />
+						<p:inputText value="#{veiculoBean.cadastro.nomeCadastro}" />
 					</p:row>
 
 					<p:row>
@@ -23,7 +23,8 @@
 					</p:row>
 
 					<p:row>
-						<p:inputText type="email" />
+						<p:inputText value="#{veiculoBean.cadastro.emailCadastro}"
+							type="email" />
 					</p:row>
 
 				</h:panelGrid>
@@ -34,7 +35,9 @@
 					</p:row>
 
 					<p:row>
-						<p:commandButton value="Peças" />
+						<p:commandButton actionListener="#{veiculoBean.cadastrar}"
+							value="Peças" update="@form :message"
+							onclick="PF('enviar').show()" />
 					</p:row>
 				</h:panelGrid>
 
@@ -51,7 +54,7 @@
 				</p:row>
 
 				<p:row>
-					<p:inputText />
+					<p:inputText value="#{veiculoBean.carro.marca}" />
 				</p:row>
 
 				<p:row>
@@ -59,7 +62,7 @@
 				</p:row>
 
 				<p:row>
-					<p:inputText />
+					<p:inputText value="#{veiculoBean.carro.modelo}" />
 				</p:row>
 
 				<p:row>
@@ -67,7 +70,7 @@
 				</p:row>
 
 				<p:row>
-					<p:inputMask mask="9999" />
+					<p:inputMask mask="9999" value="#{veiculoBean.carro.ano}" />
 				</p:row>
 
 				<p:row>
@@ -75,11 +78,27 @@
 				</p:row>
 
 				<p:row>
-					<p:inputMask mask="(***)-(9999)" />
+					<p:inputMask mask="(***)-(9999)" value="#{veiculoBean.carro.placa}" />
 				</p:row>
 
 			</h:panelGrid>
-
 		</p:fieldset>
+
+
+		<!-- Dialog Das Peças -->
+		
+		
+		<p:dialog modal="false" visible="false" widgetVar="enviar"
+			header="Peças">
+
+			<h:panelGrid>
+				<h:panelGrid>
+
+				</h:panelGrid>
+			</h:panelGrid>
+
+		</p:dialog>
+
+
 	</h:form>
 </ui:component>

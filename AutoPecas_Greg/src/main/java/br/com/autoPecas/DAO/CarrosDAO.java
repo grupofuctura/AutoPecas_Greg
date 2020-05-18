@@ -2,9 +2,13 @@ package br.com.autoPecas.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-
-
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import javax.sql.rowset.CachedRowSet;
+import com.sun.rowset.CachedRowSetImpl;
 import br.com.autoPecas.connection.ConnectionBase;
 import br.com.autoPecas.entity.Automovel;
 import br.com.autoPecas.entity.PecasDoCarro;
@@ -31,7 +35,6 @@ public class CarrosDAO {
 			pst.addBatch();
 			int[] salvoNoBanco = pst.executeBatch();
 			System.out.println(salvoNoBanco);
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -41,5 +44,46 @@ public class CarrosDAO {
 			pst.close();
 			conexao.close();
 		}
+	}
+
+	public List<Automovel> listarCarro() {
+
+		List<Automovel> listaAutomovel = new ArrayList<>();
+
+		try {
+			Connection conexao = ConnectionBase.getConnection();
+			Statement st = conexao.createStatement();
+
+			String query = "SELECT * FROM carros";
+			ResultSet resultSet = st.executeQuery(query);
+			CachedRowSet cached = new CachedRowSetImpl();
+			cached.populate(resultSet);
+
+			st.close();
+			resultSet.close();
+			conexao.close();
+
+			while (cached.next()) {
+				String placa = cached.getString("placa");
+				String modelo = cached.getString("modelo");
+				String marca = cached.getString("marca");
+				int ano = cached.getInt("ano");
+				PecasDoCarro pecas = (PecasDoCarro) cached.getArray("pecas");
+
+				Automovel automovel = new Automovel();
+				automovel.setAno(ano);
+				automovel.setMarca(marca);
+				automovel.setModelo(modelo);
+				automovel.setPecas(pecas);
+				automovel.setPlaca(placa);
+
+				listaAutomovel.add(automovel);
+			}
+			cached.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return listaAutomovel;
 	}
 }

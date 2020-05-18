@@ -1,5 +1,4 @@
 package br.com.autoPecas.entity;
-
 import java.io.Serializable;
 import java.util.List;
 

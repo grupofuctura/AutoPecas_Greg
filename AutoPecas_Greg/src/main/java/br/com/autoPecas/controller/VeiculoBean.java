@@ -5,6 +5,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
 import br.com.autoPecas.DAO.CadastroDAO;
 import br.com.autoPecas.DAO.CarrosDAO;
 import br.com.autoPecas.DAO.PecasDAO;
@@ -13,6 +16,8 @@ import br.com.autoPecas.entity.Cadastro;
 import br.com.autoPecas.entity.PecasDoCarro;
 import br.com.autoPecas.util.Faces;
 
+@ManagedBean
+@RequestScoped
 public class VeiculoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -44,21 +49,50 @@ public class VeiculoBean implements Serializable {
 
 	}
 
-	public void salvarEmMemoria() {
-		Automovel novoCarro = new Automovel();
-		novoCarro.setModelo(this.carro.getModelo());
-		novoCarro.setMarca(this.carro.getMarca());
-		novoCarro.setAno(this.carro.getAno());
-		novoCarro.setPlaca(this.carro.getPlaca());
-		novoCarro.setPecas(this.pecas);
-		this.listaAutomovel.add(novoCarro);
+	public void cadastrar() throws SQLException {
 
-		Cadastro novoCadastro = new Cadastro();
-		novoCadastro.setEmailCadastro(this.cadastro.getEmailCadastro());
-		novoCadastro.setNomeCadastro(this.cadastro.getNomeCadastro());
-		novoCadastro.setVeiculo(novoCarro);
-		this.listaCadastro.add(novoCadastro);
+		if (this.carro.getMarca().isEmpty() || this.carro.getAno() == 0 || this.carro.getModelo().isEmpty()
+				|| this.carro.getPlaca().isEmpty() || this.cadastro.getEmailCadastro().isEmpty()
+				|| this.cadastro.getNomeCadastro().isEmpty()) {
+			this.faces.msgError("preencha todos os campos");
+		} else {
+
+			Automovel novoCarro = new Automovel();
+			novoCarro.setModelo(this.carro.getModelo());
+			novoCarro.setMarca(this.carro.getMarca());
+			novoCarro.setAno(this.carro.getAno());
+			novoCarro.setPlaca(this.carro.getPlaca());
+			novoCarro.setPecas(this.pecas);
+
+			Cadastro novoCadastro = new Cadastro();
+			novoCadastro.setEmailCadastro(this.cadastro.getEmailCadastro());
+			novoCadastro.setNomeCadastro(this.cadastro.getNomeCadastro());
+			novoCadastro.setVeiculo(novoCarro);
+
+			boolean verificarCarro = false;
+			boolean verificarCadastro = false;
+			for (Automovel auto : this.carroDAO.listarCarro()) {
+				if (novoCarro.getPlaca().equals(auto.getPlaca())) {
+					verificarCarro = true;
+				}
+			}
+
+			for (Cadastro cadastro : this.cadastroDAO.listarCadastro()) {
+				if (novoCadastro.getEmailCadastro().equals(cadastro.getEmailCadastro())) {
+					verificarCadastro = true;
+				}
+			}
+
+			if (verificarCadastro == true && verificarCarro == true) {
+				this.listaAutomovel.add(novoCarro);
+				this.listaCadastro.add(novoCadastro);
+			} else {
+				this.faces.msgError("Você já possui cadastro!");
+			}
+
+		}
 	}
+
 	public void adicionarPecas() {
 		PecasDoCarro novasPecas = new PecasDoCarro();
 		novasPecas.setCarros(this.carro);
@@ -67,6 +101,7 @@ public class VeiculoBean implements Serializable {
 		this.carro.getPecas().add(novasPecas);
 
 	}
+
 	public void salvarCadastro() throws SQLException {
 
 		this.pecasDAO.cadastrarPecas(this.pecas);

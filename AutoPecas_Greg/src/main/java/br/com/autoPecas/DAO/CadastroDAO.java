@@ -10,7 +10,6 @@ import java.util.List;
 import javax.sql.rowset.CachedRowSet;
 import com.sun.rowset.CachedRowSetImpl;
 import br.com.autoPecas.connection.ConnectionBase;
-import br.com.autoPecas.entity.Automovel;
 import br.com.autoPecas.entity.Cadastro;
 
 public class CadastroDAO {
@@ -59,18 +58,21 @@ public class CadastroDAO {
 			st.close();
 			resultSet.close();
 			conexao.close();
-
+//			int i = 1;
 			while (cached.next()) {
+
 				String nome = cached.getString("nome");
 				String email = cached.getString("email");
-				Automovel veiculo = (Automovel) cached.getObject("veiculo");
 
 				Cadastro cadastro = new Cadastro();
 				cadastro.setEmailCadastro(email);
 				cadastro.setNomeCadastro(nome);
-				cadastro.setVeiculo(veiculo);
-
 				listar.add(cadastro);
+//				Object carroObjeto = cached.getObject(i);
+//				Automovel carros = (Automovel) carroObjeto;
+//				cadastro.setVeiculo(carros);
+//				i++;
+
 			}
 			cached.close();
 		} catch (Exception e) {

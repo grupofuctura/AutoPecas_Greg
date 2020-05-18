@@ -1,7 +1,14 @@
 package br.com.autoPecas.DAO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import javax.sql.rowset.CachedRowSet;
+import com.sun.rowset.CachedRowSetImpl;
 import br.com.autoPecas.connection.ConnectionBase;
 import br.com.autoPecas.entity.PecasDoCarro;
 
@@ -36,10 +43,10 @@ public class PecasDAO {
 			conexao.setAutoCommit(false);
 //			pst = conexao.prepareStatement("INSERT INTO pecas(cpf,nomePeca) VALUE(?,?)");
 //			Long id = this.recuperaId();
-			
+
 			String query = "INSERT INTO pecas(cpf,nomePeca) VALUES(?,?)";
 			pst = conexao.prepareStatement(query);
-			
+
 			pst.setString(1, pecas.getCpf());
 			pst.setString(2, pecas.getNomePeca());
 
@@ -59,6 +66,40 @@ public class PecasDAO {
 		conexao.commit();
 		pst.close();
 		conexao.close();
+
+	}
+
+	public List<PecasDoCarro> listarPecas() {
+		List<PecasDoCarro> listaDePecas = new ArrayList<>();
+
+		try {
+			Connection conexao = ConnectionBase.getConnection();
+			Statement st = conexao.createStatement();
+
+			String query = "SELECT* FROM pecas";
+			ResultSet resultSet = st.executeQuery(query);
+			CachedRowSet cached = new CachedRowSetImpl();
+			cached.populate(resultSet);
+			st.close();
+			resultSet.close();
+			conexao.close();
+
+			while (cached.next()) {
+				String cpf = cached.getString("cpf");
+				String nomePeca = cached.getString("nomePeca");
+
+				PecasDoCarro peca = new PecasDoCarro();
+				peca.setCpf(cpf);
+				peca.setNomePeca(nomePeca);
+
+				listaDePecas.add(peca);
+			}
+			cached.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return listaDePecas;
 
 	}
 }

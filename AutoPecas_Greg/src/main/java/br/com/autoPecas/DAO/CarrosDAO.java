@@ -1,5 +1,4 @@
 package br.com.autoPecas.DAO;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -68,13 +67,16 @@ public class CarrosDAO {
 				String modelo = cached.getString("modelo");
 				String marca = cached.getString("marca");
 				int ano = cached.getInt("ano");
-				PecasDoCarro pecas = (PecasDoCarro) cached.getArray("pecas");
 
 				Automovel automovel = new Automovel();
+//				List<PecasDoCarro> pecas = (List<PecasDoCarro>) cached.getArray("pecas");
+//				for (int i = 1; i < pecas.size(); i++) {
+//					automovel.setPecas(pecas);
+//				}
+
 				automovel.setAno(ano);
 				automovel.setMarca(marca);
 				automovel.setModelo(modelo);
-				automovel.setPecas(pecas);
 				automovel.setPlaca(placa);
 
 				listaAutomovel.add(automovel);

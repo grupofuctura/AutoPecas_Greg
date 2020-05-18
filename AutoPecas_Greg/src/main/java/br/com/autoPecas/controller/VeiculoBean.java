@@ -27,9 +27,11 @@ public class VeiculoBean implements Serializable {
 	private CadastroDAO cadastroDAO;
 	private CarrosDAO carroDAO;
 	private PecasDAO pecasDAO;
+	private List<PecasDoCarro> listaDePecas;
 	private Faces faces;
 	private List<Cadastro> listaCadastro;
 	private List<Automovel> listaAutomovel;
+	private String cpf;
 
 	public VeiculoBean() {
 		this.cadastro = new Cadastro();
@@ -45,11 +47,13 @@ public class VeiculoBean implements Serializable {
 		this.listaCadastro = new ArrayList<>();
 		this.listaAutomovel = new ArrayList<>();
 
+		this.listaDePecas = new ArrayList<>();
+
 		this.faces = new Faces();
 
 	}
 
-	public void cadastrar() throws SQLException {
+	public String cadastrar() throws SQLException {
 
 		if (this.carro.getMarca().isEmpty() || this.carro.getAno() == 0 || this.carro.getModelo().isEmpty()
 				|| this.carro.getPlaca().isEmpty() || this.cadastro.getEmailCadastro().isEmpty()
@@ -84,30 +88,66 @@ public class VeiculoBean implements Serializable {
 			}
 
 			if (verificarCadastro == true && verificarCarro == true) {
+				this.faces.msgError("Você já possui cadastro!");
+			} else {
+
 				this.listaAutomovel.add(novoCarro);
 				this.listaCadastro.add(novoCadastro);
-			} else {
-				this.faces.msgError("Você já possui cadastro!");
+				return "/pages/terceiraPagina.xhtml";
 			}
 
 		}
+
+		return "";
 	}
 
 	public void adicionarPecas() {
+
 		PecasDoCarro novasPecas = new PecasDoCarro();
 		novasPecas.setCarros(this.carro);
-		novasPecas.setCpf(this.pecas.getCpf());
 		novasPecas.setNomePeca(this.pecas.getNomePeca());
 		this.carro.getPecas().add(novasPecas);
+		
 
 	}
 
 	public void salvarCadastro() throws SQLException {
+		if (this.pecas.getCpf().isEmpty()) {
+			this.faces.msgError("preencha todos os campos!");
+		} else {
 
-		this.pecasDAO.cadastrarPecas(this.pecas);
-		this.carroDAO.cadastrarCarro(this.carro);
-		this.cadastroDAO.cadastrar(this.cadastro);
+			boolean verificarPeca = false;
+			for (PecasDoCarro pecaCarro : this.pecasDAO.listarPecas()) {
+				if (this.cpf.equals(pecaCarro.getCpf())) {
+					verificarPeca = true;
+				}
+			}
 
+			if (verificarPeca) {
+				this.faces.msgError("vc já possui cadastro");
+			} else {
+
+				this.pecasDAO.cadastrarPecas(this.pecas);
+				this.carroDAO.cadastrarCarro(this.carro);
+				this.cadastroDAO.cadastrar(this.cadastro);
+			}
+		}
+	}
+
+	public List<PecasDoCarro> getListaDePecas() {
+		return listaDePecas;
+	}
+
+	public void setListaDePecas(List<PecasDoCarro> listaDePecas) {
+		this.listaDePecas = listaDePecas;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public List<Automovel> getListaAutomovel() {

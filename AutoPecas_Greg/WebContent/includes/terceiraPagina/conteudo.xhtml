@@ -1,0 +1,57 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	
+
+	<p:growl id="messagem" />
+	<h:form>
+		<p:fieldset legend="Peças">
+			<h:panelGrid columns="2" cellpadding="5" cellspacing="5">
+				<h:panelGrid columns="2" cellpadding="5" cellspacing="5">
+
+					<p:row>
+						<p:outputLabel value="Cpf: " />
+					</p:row>
+					
+					<p:row>
+						<p:inputText value="" />
+					</p:row>
+
+					<p:row>
+						<p:outputLabel value="Nome da Peça: " />
+					</p:row>
+
+					<p:row>
+						<p:inputText value="" />
+					</p:row>
+
+				</h:panelGrid>
+
+				<h:panelGrid cellpadding="5" cellspacing="5">
+					<p:row>
+						<p:commandButton actionListener="#{veiculoBean.salvarCadastro}"
+							value="Enviar" update="@form :messagem" />
+					</p:row>
+
+					<p:row>
+						<p:commandButton value="Adicionar"
+							actionListener="#{veiculoBean.adicionarPecas}" />
+					</p:row>
+				</h:panelGrid>
+
+			</h:panelGrid>
+		</p:fieldset>
+		<p:dataTable  var="lista" value="#{veiculoBean.listaDePecas}" >
+			<p:column headerText="Nome da Peça">
+				<h:outputText value="#{lista.nomeDepeca}" />
+			</p:column>
+
+		</p:dataTable>
+
+	</h:form>
+
+
+</ui:component>

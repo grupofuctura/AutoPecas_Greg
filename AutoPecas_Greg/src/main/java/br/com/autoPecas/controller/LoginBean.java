@@ -1,5 +1,6 @@
 package br.com.autoPecas.controller;
 
+import java.io.Serializable;
 import java.sql.SQLException;
 
 import javax.faces.bean.ManagedBean;
@@ -11,8 +12,9 @@ import br.com.autoPecas.util.Faces;
 
 @ManagedBean(name = "LoginBean")
 @SessionScoped
-public class LoginBean {
-
+public class LoginBean implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	private String txtEmail;
 	private String txtSenha;
 	private Usuario usuario;
@@ -67,8 +69,10 @@ public class LoginBean {
 
 			}
 			if (verificarCampos) {
-				System.out.println("ir para a proxima pagina");
+				return "/pages/segundaPagina.xhtml";
 			} else {
+				this.txtEmail = null;
+				this.txtSenha = null;
 				faces.msgError("login ou senha incorretos");
 			}
 		}

@@ -9,10 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.sql.rowset.CachedRowSet;
 import com.sun.rowset.CachedRowSetImpl;
+
+import br.com.autoPecas.CRUD.CadastroCRUD;
 import br.com.autoPecas.connection.ConnectionBase;
 import br.com.autoPecas.entity.Cadastro;
 
-public class CadastroDAO {
+public class CadastroDAO implements CadastroCRUD<Cadastro> {
 
 	public void cadastrar(Cadastro cadastro) throws SQLException {
 

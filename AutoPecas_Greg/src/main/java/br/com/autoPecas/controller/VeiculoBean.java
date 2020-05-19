@@ -105,7 +105,6 @@ public class VeiculoBean implements Serializable {
 		novasPecas.setCarros(this.carro);
 		novasPecas.setNomePeca(this.pecas.getNomePeca());
 		this.carro.getPecas().add(novasPecas);
-		
 
 	}
 

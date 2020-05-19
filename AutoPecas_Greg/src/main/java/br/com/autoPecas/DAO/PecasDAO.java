@@ -9,10 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.sql.rowset.CachedRowSet;
 import com.sun.rowset.CachedRowSetImpl;
+
+import br.com.autoPecas.CRUD.PecasCRUD;
 import br.com.autoPecas.connection.ConnectionBase;
 import br.com.autoPecas.entity.PecasDoCarro;
 
-public class PecasDAO {
+public class PecasDAO implements PecasCRUD<PecasDoCarro> {
 
 //	public Long recuperaId() throws SQLException {
 //

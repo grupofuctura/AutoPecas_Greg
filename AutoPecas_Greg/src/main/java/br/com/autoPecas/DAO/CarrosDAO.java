@@ -8,11 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.sql.rowset.CachedRowSet;
 import com.sun.rowset.CachedRowSetImpl;
+
+import br.com.autoPecas.CRUD.AutomovelCRUD;
 import br.com.autoPecas.connection.ConnectionBase;
 import br.com.autoPecas.entity.Automovel;
 import br.com.autoPecas.entity.PecasDoCarro;
 
-public class CarrosDAO {
+public class CarrosDAO implements AutomovelCRUD<Automovel> {
 
 	public void cadastrarCarro(Automovel carro) throws SQLException {
 
@@ -69,10 +71,6 @@ public class CarrosDAO {
 				int ano = cached.getInt("ano");
 
 				Automovel automovel = new Automovel();
-//				List<PecasDoCarro> pecas = (List<PecasDoCarro>) cached.getArray("pecas");
-//				for (int i = 1; i < pecas.size(); i++) {
-//					automovel.setPecas(pecas);
-//				}
 
 				automovel.setAno(ano);
 				automovel.setMarca(marca);
